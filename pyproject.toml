@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "proactive-email-agent"
+version = "0.2.0"
+description = "A proactive email agent: a decision-theoretic autonomy policy under a hard safety floor and a statistical risk floor."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Ritesh Janga" }]
+keywords = ["agents", "calibration", "conformal", "safety", "decision-theory"]
+dependencies = ["numpy>=1.24", "scipy>=1.10", "matplotlib>=3.7"]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0", "mypy>=1.5"]
+llm = ["anthropic>=0.39"]
+
+[project.scripts]
+proagent = "proagent.cli:main"
+
+[tool.setuptools]
+packages = ["proagent", "eval"]
+
+[tool.setuptools.package-data]
+proagent = ["py.typed"]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]
+
+[tool.mypy]
+python_version = "3.10"
+ignore_missing_imports = true
